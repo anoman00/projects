@@ -1,4 +1,10 @@
 import React, { Component } from "react";
+import { relative } from "path";
+
+const number = {
+  display: 'inline-block',
+  width: 55
+}
 
 class Counter extends Component {
   // state = {
@@ -10,7 +16,7 @@ class Counter extends Component {
     return (
       <React.Fragment>
         <div>
-          <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
+          <span className={this.getBadgeClasses()} style={number}>{this.formatCount()}</span>
           <button
             onClick={() => this.props.onIncrement(this.props.counter)}
             className="btn btn-secondary btn-sm m-2"

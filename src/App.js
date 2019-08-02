@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import NavBar from "./components/navbar";
 import "./App.css";
 import Counters from "./components/counters";
+import Adder from "./components/adder"
 
 class App extends Component {
   state = {
@@ -44,7 +45,16 @@ class App extends Component {
     const counters = this.state.counters.filter(c => c.id !== counterId);
     this.setState({ counters: counters });
   };
-  
+
+  handleAdd = () => {
+    const counters = [...this.state.counters];
+    const idList = counters.map(o => o.id);
+    const max = Math.max.apply(null, idList);
+    const newId = max + 1;
+    counters.push({ id: newId, value: 0 });
+    this.setState({ counters: counters });
+  };
+
   render() {
     return (
       <React.Fragment>
@@ -59,6 +69,7 @@ class App extends Component {
             onDecrement={this.handleDecrement}
             onDelete={this.handleDelete}
           />
+          <Adder onAdd={this.handleAdd} />
         </main>
       </React.Fragment>
     );
